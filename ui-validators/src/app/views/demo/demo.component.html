@@ -1,0 +1,39 @@
+<pre>
+    form valid: {{demoForm.valid}}
+    status value : {{demoForm.get('status')?.value}}
+    status valid : {{demoForm.get('status')?.valid}}
+    email value : {{demoForm.get('email')?.value}}
+    email valid : {{demoForm.get('email')?.valid}}
+    opmerkingen value : {{demoForm.get('opmerkingen')?.value}}
+    opemerkingen valid : {{demoForm.get('opmerkingen')?.valid}}
+</pre>
+
+<form [formGroup]="demoForm" (ngSubmit)="onSave()">
+  <fieldset>
+    <div class="mb-3">
+      <select class="form-select" formControlName="status">
+          <option value>Choose ...</option>
+        <option *ngFor="let status of statussen" [value]="status.id">{{status.status}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      <input formControlName="email"
+        type="email"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="name@example.com"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Opmerkingen</label>
+      <textarea formControlName="opmerkingen"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </fieldset>
+</form>
