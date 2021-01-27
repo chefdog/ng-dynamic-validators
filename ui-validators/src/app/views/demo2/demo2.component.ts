@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-demo2',
   templateUrl: './demo2.component.html',
-  styleUrls: ['./demo2.component.scss']
+  styleUrls: []
 })
 export class Demo2Component implements OnInit {
   statussen = [
@@ -20,18 +20,17 @@ export class Demo2Component implements OnInit {
   ngOnInit(): void {
     this.demoForm = new FormGroup({});
     this.demoForm.addControl('status', new FormControl(this.statussen[0].id));
-    this.demoForm.addControl('sameAddress', new FormControl(false));
     this.demoForm.addControl('email', new FormControl());
-    this.demoForm.addControl('opmerkingen', new FormControl());
+    this.demoForm.addControl('comments', new FormControl());
 
-    this.statusControl.valueChanges.subscribe(val => {
+    this.status.valueChanges.subscribe(val => {
       if(val === '2') {
-        this.opmerkingenControl.setValidators([Validators.required, Validators.minLength(5)]);
+        this.comments.setValidators([Validators.required, Validators.minLength(5)]);
       }
       else {
-        this.opmerkingenControl.setValidators(null);
+        this.comments.setValidators(null);
       }
-      this.opmerkingenControl.updateValueAndValidity();
+      this.comments.updateValueAndValidity();
     });
   }
 
@@ -42,11 +41,11 @@ export class Demo2Component implements OnInit {
     }
   }
 
-  get statusControl() {
+  get status() {
     return this.demoForm.get('status') as FormControl;
   }
 
-  get opmerkingenControl() {
-    return this.demoForm.get('opmerkingen') as FormControl;
+  get comments() {
+    return this.demoForm.get('comments') as FormControl;
   }
 }
