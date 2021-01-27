@@ -19,13 +19,13 @@ export class Demo2Component implements OnInit {
 
   ngOnInit(): void {
     this.demoForm = new FormGroup({});
-    this.demoForm.addControl('status', new FormControl());
+    this.demoForm.addControl('status', new FormControl(this.statussen[0].id));
     this.demoForm.addControl('sameAddress', new FormControl(false));
     this.demoForm.addControl('email', new FormControl());
     this.demoForm.addControl('opmerkingen', new FormControl());
 
     this.statusControl.valueChanges.subscribe(val => {
-      if(val === '1') {
+      if(val === '2') {
         this.opmerkingenControl.setValidators([Validators.required, Validators.minLength(5)]);
       }
       else {

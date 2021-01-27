@@ -1,6 +1,6 @@
-<h1>Demo 2 : Conditional Validator</h1>
+<h1>Demo 1 : Conditional Validator</h1>
 <p>
-    
+    Validation is controlled by conditional validator class
 </p>
 
 <pre>
@@ -20,32 +20,31 @@
   <fieldset>
     <div class="mb-3">
       <select class="form-select" formControlName="status">
-          <option value>Choose ...</option>
         <option *ngFor="let status of statussen" [value]="status.id">{{status.status}}</option>
       </select>
     </div>    
     <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Email address</label>
+      <label for="email" class="form-label">Email address</label>
       <input formControlName="email"
         type="email"
         class="form-control"
-        id="exampleFormControlInput1"
+        id="email"
         placeholder="name@example.com"
       />
     </div>
     <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">Opmerkingen</label>
+      <label for="opmerkingen" class="form-label">Opmerkingen</label>
       <textarea formControlName="opmerkingen"
         class="form-control"
-        id="exampleFormControlTextarea1"
+        id="opmerkingen"
         rows="3"
       ></textarea>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="same-address" formControlName="sameAddress">
-        <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+      <div *ngIf="opmerkingenControl.invalid && (opmerkingenControl.dirty || opmerkingenControl.touched)">
+        {{opmerkingenControl.errors | json}}
+        <div class="invalid-feedback" *ngIf="opmerkingenControl.errors?.required">Opmerkingen is required.</div>
+        <div class="invalid-feedback" *ngIf="opmerkingenControl.errors?.minlength">Opmerkingen must be at least 5 characters long.</div>
       </div>
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </fieldset>

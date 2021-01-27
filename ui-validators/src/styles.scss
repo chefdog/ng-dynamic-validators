@@ -7,3 +7,13 @@ body {
 .required label::after {
   content: '*';
 }
+.invalid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: .25rem;
+  font-size: .875em;
+  color: #dc3545;
+}
+.form-control.ng-pristine.ng-invalid.ng-touched {
+  border-color: #dc3545;
+}

@@ -21,7 +21,6 @@
   <fieldset>
     <div class="mb-3">
       <select class="form-select" formControlName="status">
-          <option value>Choose ...</option>
         <option *ngFor="let status of statussen" [value]="status.id">{{status.status}}</option>
       </select>
     </div>    
@@ -30,7 +29,7 @@
       <input formControlName="email"
         type="email"
         class="form-control"
-        id="exampleFormControlInput1"
+        id="email"
         placeholder="name@example.com"
       />
     </div>
@@ -38,7 +37,7 @@
       <label for="exampleFormControlTextarea1" class="form-label">Opmerkingen</label>
       <textarea formControlName="opmerkingen"
         class="form-control"
-        id="exampleFormControlTextarea1"
+        id="opmerkingen"
         rows="3"
       ></textarea>            
         <div *ngIf="opmerkingenControl.invalid && (opmerkingenControl.dirty || opmerkingenControl.touched)">

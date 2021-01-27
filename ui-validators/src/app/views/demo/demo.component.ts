@@ -19,10 +19,9 @@ export class DemoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.demoForm.addControl('status', new FormControl());
-    this.demoForm.addControl('sameAddress', new FormControl(false));
+    this.demoForm.addControl('status', new FormControl(this.statussen[0].id));
     this.demoForm.addControl('email', new FormControl());
-    this.demoForm.addControl('opmerkingen', new FormControl(undefined, UiValidators.conditionalValidator(() => (this.demoForm.get('sameAddress')?.value === true), Validators.required )));
+    this.demoForm.addControl('opmerkingen', new FormControl(undefined, UiValidators.conditionalValidator(() => (this.statusControl.value === '2'), Validators.required )));
   }
 
   onSave() {
@@ -30,5 +29,13 @@ export class DemoComponent implements OnInit {
     if(this.demoForm.valid) {
       console.log(this.demoForm.value);
     }
+  }
+
+  get statusControl() {
+    return this.demoForm.get('status') as FormControl;
+  }
+
+  get opmerkingenControl() {
+    return this.demoForm.get('opmerkingen') as FormControl;
   }
 }
