@@ -20,8 +20,9 @@ export class DemoComponent implements OnInit {
 
   ngOnInit(): void {
     this.demoForm.addControl('status', new FormControl());
+    this.demoForm.addControl('sameAddress', new FormControl(false));
     this.demoForm.addControl('email', new FormControl());
-    this.demoForm.addControl('opmerkingen', new FormControl(undefined, UiValidators.conditionalValidator(() => (this.demoForm.get('status')?.value === 1), Validators.required )));
+    this.demoForm.addControl('opmerkingen', new FormControl(undefined, UiValidators.conditionalValidator(() => (this.demoForm.get('sameAddress')?.value === true), Validators.required )));
   }
 
   onSave() {

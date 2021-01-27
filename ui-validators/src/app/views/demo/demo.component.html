@@ -5,7 +5,10 @@
     email value : {{demoForm.get('email')?.value}}
     email valid : {{demoForm.get('email')?.valid}}
     opmerkingen value : {{demoForm.get('opmerkingen')?.value}}
-    opemerkingen valid : {{demoForm.get('opmerkingen')?.valid}}
+    opmerkingen valid : {{demoForm.get('opmerkingen')?.valid}}
+
+    same address value : {{demoForm.get('sameAddress')?.value}}
+    same address valid : {{demoForm.get('sameAddress')?.valid}}
 </pre>
 
 <form [formGroup]="demoForm" (ngSubmit)="onSave()">
@@ -15,7 +18,7 @@
           <option value>Choose ...</option>
         <option *ngFor="let status of statussen" [value]="status.id">{{status.status}}</option>
       </select>
-    </div>
+    </div>    
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Email address</label>
       <input formControlName="email"
@@ -33,6 +36,11 @@
         rows="3"
       ></textarea>
     </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="same-address" formControlName="sameAddress">
+        <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+      </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
   </fieldset>
