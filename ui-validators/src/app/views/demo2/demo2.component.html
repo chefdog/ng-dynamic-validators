@@ -1,6 +1,7 @@
-<h1>Demo 2 : Conditional Validator</h1>
+
+<h1>Demo 2 : Dynamically Add Validators</h1>
 <p>
-    
+    The FormGroup class exposes an API that enables us to set validators dynamically.
 </p>
 
 <pre>
@@ -33,13 +34,17 @@
         placeholder="name@example.com"
       />
     </div>
-    <div class="mb-3">
+    <div class="mb-3" [class.required]="opmerkingenControl.validator!==null">
       <label for="exampleFormControlTextarea1" class="form-label">Opmerkingen</label>
       <textarea formControlName="opmerkingen"
         class="form-control"
         id="exampleFormControlTextarea1"
         rows="3"
-      ></textarea>
+      ></textarea>            
+        <div *ngIf="opmerkingenControl.invalid && (opmerkingenControl.dirty || opmerkingenControl.touched)">
+            <div class="invalid-feedback" *ngIf="opmerkingenControl.errors?.required">Opmerkingen is required.</div>
+            <div class="invalid-feedback" *ngIf="opmerkingenControl.errors?.minlength">Opmerkingen must be at least 5 characters long.</div>
+        </div>
     </div>
 
     <div class="form-check">
